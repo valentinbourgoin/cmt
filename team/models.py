@@ -11,7 +11,7 @@ class Championship(models.Model):
 class Team(models.Model):
 	name = models.CharField("Nom", max_length=255)
 	abbr = models.CharField("Abbréviation", max_length=10)
-	picture = models.ImageField("Image", upload_to="teams/", blank=True, null=True)
+	picture = models.ImageField("Image", upload_to="media/teams/", blank=True, null=True)
 	championship = models.ForeignKey("Championship", blank=True, null=True)
 
 	def __unicode__(self):
@@ -34,7 +34,7 @@ class Player(models.Model):
 	birthdate = models.DateField("Date de naissance", blank=True, null=True)
 	birthplace = models.CharField("Lieu de naissance", max_length=255, blank=True, null=True)
 	number = models.IntegerField("Numéro de maillot", blank=True, null=True)
-	picture = models.ImageField("Image", upload_to="players/", blank=True, null=True)
+	picture = models.ImageField("Image", upload_to="media/players/", blank=True, null=True)
 	feet = models.IntegerField("Pied de prédilection", choices=FEET_CHOICES, blank=True, null=True)
 	bio = models.TextField(blank=True, null=True)
 	team = models.ForeignKey('Team', blank=True, null=True)
