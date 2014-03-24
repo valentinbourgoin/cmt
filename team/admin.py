@@ -10,6 +10,9 @@ class SkillAdmin(admin.TabularInline):
 class PlayerSkillAdmin(admin.TabularInline):
     model = PlayerSkill
 
+class PlayerPositionAdmin(admin.TabularInline):
+	model = PlayerPosition
+
 
 ###
 # Main admin models 
@@ -20,24 +23,32 @@ admin.site.register(Championship, ChampionshipAdmin)
 
 class TeamAdmin(admin.ModelAdmin): 
 	model = Team
+	list_display = ('name', 'championship',)
 admin.site.register(Team, TeamAdmin)
 
 class PlayerAdmin(admin.ModelAdmin): 
 	model = Player
+	list_display = ('firstname', 'lastname', 'get_main_position')
+	list_filter = ('team', 'positions')
 	inlines = [
-		PlayerSkillAdmin
+		PlayerSkillAdmin,
+		PlayerPositionAdmin,
 	]
 admin.site.register(Player, PlayerAdmin)
 
 class PositionAdmin(admin.ModelAdmin): 
 	model = Position
+	list_display = ('label', 'type',)
 admin.site.register(Position, PositionAdmin)
 
 class SkillTypeAdmin(admin.ModelAdmin): 
 	model = SkillType
 	inlines = [
-        SkillAdmin,
+        SkillAdmin, 
     ]
 admin.site.register(SkillType, SkillTypeAdmin)
 
-
+class SkillFullAdmin(admin.ModelAdmin):
+	list_display = ('label', 'type',)
+	model = Skill
+admin.site.register(Skill, SkillFullAdmin)

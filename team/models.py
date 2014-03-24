@@ -5,10 +5,17 @@ from django.db import models
 class Championship(models.Model):
 	name = models.CharField("Nom", max_length=255)
 
+	def __unicode__(self):
+		return u'%s' % self.name
+
 class Team(models.Model):
 	name = models.CharField("Nom", max_length=255)
 	abbr = models.CharField("Abbréviation", max_length=10)
 	picture = models.ImageField("Image", upload_to="teams/", blank=True, null=True)
+	championship = models.ForeignKey("Championship", blank=True, null=True)
+
+	def __unicode__(self):
+		return u'%s' % self.name
 
 ###
 # Players
@@ -30,8 +37,17 @@ class Player(models.Model):
 	picture = models.ImageField("Image", upload_to="players/", blank=True, null=True)
 	feet = models.IntegerField("Pied de prédilection", choices=FEET_CHOICES, blank=True, null=True)
 	bio = models.TextField(blank=True, null=True)
+	team = models.ForeignKey('Team', blank=True, null=True)
 	positions = models.ManyToManyField('Position', through='PlayerPosition')
 	skills = models.ManyToManyField('Skill', through='PlayerSkill')
+
+	def __unicode__(self):
+		return u'%s %s' % (self.firstname, self.lastname)
+
+	def get_main_position(self): 
+		if self.positions.all().count() == 0:
+			return null
+		return self.positions.all()[0]
 
 ###
 # Positions
@@ -77,6 +93,9 @@ class Skill(models.Model):
 class SkillType(models.Model):
 	label = models.CharField("Libellé", max_length=255)
 	order = models.IntegerField()
+
+	def __unicode__(self):
+		return u'%s' % self.label
 
 class PlayerSkill(models.Model):
 	value = models.FloatField()
