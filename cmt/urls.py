@@ -4,6 +4,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	# Core
+	url('', include('core.urls')),
+
 	# Pronostic
 	url('^pronostic/', include('pronostic.urls')),
 

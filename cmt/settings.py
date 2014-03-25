@@ -88,9 +88,15 @@ USE_L10N = False
 
 USE_TZ = True
 
+SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'public/static')
 
 STATIC_URL = '/static/'
 
@@ -100,6 +106,10 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     # Django allauth
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
 )
 
 ###
@@ -114,7 +124,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'SCOPE': ['email', 'publish_stream'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'METHOD': 'oauth2',
+        'METHOD': 'js_sdk',
         'LOCALE_FUNC': 'path.to.callable',
         'VERIFIED_EMAIL': False
     }

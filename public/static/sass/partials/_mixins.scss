@@ -1,0 +1,46 @@
+/***
+ * Links
+ ***/
+@mixin reset-link() {
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+/***
+ * Typo
+ ***/
+@mixin font-bold {
+	font-family: $font-bold;
+	letter-spacing: -0.05em;
+}
+@mixin uppercase {
+	text-transform: uppercase;
+}
+@mixin indice {
+	font-style: normal;
+	position: relative;
+	bottom: -2px;
+	font-size: .8em;
+	line-height: .8em;
+	vertical-align:super;
+}
+
+/***
+ * Layout
+ ***/
+@mixin dimensions($image) {
+	width: image-width($image);
+	height: image-height($image);
+}
+
+/***
+ * Shadows
+ ***/
+@mixin shadow {
+	@include box-shadow(3px 3px 0 rgba(0, 0, 0, .2));
+}
+@mixin no-shadow {
+	@include box-shadow(none);
+}

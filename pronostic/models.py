@@ -14,6 +14,9 @@ class MatchDay(models.Model):
 	championship = models.ForeignKey(tm.Championship)
 	label = models.CharField("Libellé", max_length=255)
 
+	def __unicode__(self):
+		return u'%s - %s' % (self.championship, self.label)
+
 class Match(models.Model):
 	match_day = models.ForeignKey(MatchDay)
 	date_min = models.DateTimeField("Date de début de soumission", null=True, blank=True)
@@ -21,6 +24,9 @@ class Match(models.Model):
 	date = models.DateTimeField("Date du match",)
 	team_home = models.ForeignKey(tm.Team, related_name="team_home")
 	team_away = models.ForeignKey(tm.Team, related_name="team_away")
+
+	def __unicode__(self):
+		return u'%s - %s' % (self.team_home, self.team_away)
 
 ###
 # Pronostic
