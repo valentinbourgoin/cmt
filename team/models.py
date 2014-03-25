@@ -2,6 +2,9 @@
 
 from django.db import models
 
+###
+# Team
+###
 class Championship(models.Model):
 	name = models.CharField("Nom", max_length=255)
 
