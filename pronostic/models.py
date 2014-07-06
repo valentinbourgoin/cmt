@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from team import models as tm
+from .managers import MatchManager 
 
 
 ###
@@ -25,8 +26,15 @@ class Match(models.Model):
 	team_home = models.ForeignKey(tm.Team, related_name="team_home")
 	team_away = models.ForeignKey(tm.Team, related_name="team_away")
 
+	objects = MatchManager()
+
 	def __unicode__(self):
 		return u'%s - %s' % (self.team_home, self.team_away)
+
+	def get_opposant(self, team): 
+		if team == self.team_away: 
+			return self.team_home
+		return self.team_away
 
 ###
 # Pronostic

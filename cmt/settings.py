@@ -4,7 +4,6 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -40,6 +39,7 @@ THIRD_PARTY_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'sorl.thumbnail',
 )
 
 LOCAL_APPS = (
@@ -86,9 +86,9 @@ USE_I18N = False
 
 USE_L10N = False
 
-USE_TZ = True
+USE_TZ = False
 
-SITE_ID = 1
+SITE_ID = 2
 
 
 # Static files (CSS, JavaScript, Images)
@@ -99,6 +99,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'public/static')
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'cmt/static'),
+)
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',

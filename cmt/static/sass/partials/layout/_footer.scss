@@ -1,0 +1,27 @@
+footer#footer {
+
+	background: $color-darkgrey;
+	padding: 25px 0;
+
+	p {
+		float: left;
+		color: $color-grey;
+	}
+
+	ul {
+		margin-top: -1px;
+		float: right; 
+		text-align: right;
+		li {
+			@include inline-block;
+			margin: 0 0 0 20px;
+			a {
+				@include uppercase;
+				@include reset-link;
+				@include font-bold;
+				color: $color-grey;
+			}
+		}
+	}
+
+}

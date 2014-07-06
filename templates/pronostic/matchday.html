@@ -1,0 +1,12 @@
+{% block body %}
+<h1>{{ team }}</h1>
+<h2>Match day : {{ match }}</h2>
+<ul>
+	{% for player in team.player_set.all %}
+	<li>
+		{{ player }}
+		<p>{% for position in player.positions.all %}{{ position }} - {% endfor %}</p>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

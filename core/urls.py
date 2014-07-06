@@ -5,5 +5,5 @@ import views
 
 urlpatterns = patterns('',
 	# Homepage
-	url('^$', views.homepage),
+	url('^$', views.homepage, name="homepage"),
 )

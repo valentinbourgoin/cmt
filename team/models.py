@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from sorl.thumbnail import ImageField
 
 ###
 # Team
@@ -14,11 +15,13 @@ class Championship(models.Model):
 class Team(models.Model):
 	name = models.CharField("Nom", max_length=255)
 	abbr = models.CharField("Abbréviation", max_length=10)
-	picture = models.ImageField("Image", upload_to="media/teams/", blank=True, null=True)
+	picture = ImageField("Image", upload_to="teams/", blank=True, null=True)
+	logo = ImageField("Logo", upload_to="logos/", blank=True, null=True)
 	championship = models.ForeignKey("Championship", blank=True, null=True)
 
 	def __unicode__(self):
 		return u'%s' % self.name
+
 
 ###
 # Players

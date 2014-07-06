@@ -1,0 +1,130 @@
+/**
+ * Homepage
+ **/
+.page#page-home {
+
+	background: $color-darkgrey;
+
+	.top {
+		background: $color-blue;
+		padding: 40px 0 10px 0;
+		.logo {
+			float: left;
+		}
+		.like, .newsletter {
+			float: right;
+			width: 250px;
+			height: 16px;
+			border-bottom: 2px solid $color-darkgrey;
+		}
+		.like {
+			background: #345ca0;
+			margin-right: 15px;
+		}
+		.newsletter {
+			background: $color-white;
+			height: 32px;
+			input {
+				border: none;
+				height: 95%;
+				&[type=email] {
+					width: 205px;
+					margin-left: 10px;
+				}
+				&[type=submit] {
+					text-indent: 999px;
+					width: 30px;
+					background: url(../images/check.png) $color-white no-repeat 0 3px;
+				}
+			}
+		}
+
+		.push {
+			clear: both;
+			text-align: center;
+			padding-top: 40px;
+			h1 {
+				color: $color-white;
+				text-transform: uppercase;
+				margin: 0;
+				font-size: 1.4em;
+				line-height: 1.2em;
+			}
+			img {
+				display: block;
+				margin: 10px auto 0;
+			}
+		}
+	}
+
+	#play {
+
+		padding: 30px 0;
+		background: $color-darkblue;
+
+		.match {
+			@include inline-block;
+			width: 230px;
+			color: $color-white;
+			span {
+				margin: 0 5px;
+			}
+			.team {
+				@include inline-block;
+				@include border-radius(50%);
+				background: $color-white;
+				padding: 5px;
+				img {
+					vertical-align: middle;
+				}
+				&.mine {
+					padding: 10px;
+					margin-top: 25px;
+				}
+			}
+		}
+
+		.text {
+			@include inline-block;
+			width: 370px;
+			color: $color-white;
+			line-height: 2em;
+			h2 {
+				font-size: 2em;
+				@include uppercase;
+			}
+			h3 {
+				margin-top: .6em;
+				font-size: 1.2em;
+			}
+		}
+
+		.buttons {
+			@include inline-block;
+			float: right;
+			width: 280px;
+			.button {
+				width: 100%;
+				margin-bottom: .9em;
+				height: 1.8em;
+				line-height: 1.8em;
+				@include uppercase;
+				font-size: 1em;
+			}
+		}
+
+	}
+
+	#sponsors {
+		background: $color-white; 
+		padding: 30px 0;
+		ul {
+			text-align: center;
+			li {
+				@include inline-block;
+				margin: 0 15px;
+			}
+		}
+	}
+
+}

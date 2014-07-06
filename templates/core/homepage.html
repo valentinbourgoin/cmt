@@ -1,10 +1,78 @@
 {% extends "base.html" %}
+{% load staticfiles socialaccount i18n thumbnail %}
 
 {% block body %}
-	
-	<div id="login">
-		{% load socialaccount %}
-		<a href="{% provider_login_url "facebook" method="oauth2" %}">Facebook OAuth2</a>
+	<div class="top">
+		<div class="wrapper">
+			<div class="logo">
+				<img src="{% static "images/logo_home.png" %}" />
+			</div>
+			<div class="newsletter">
+				<input type="email" name="newsletter" placeholder="Newsletter" />
+				<input type="submit" name="add-newsletter" />
+			</div>
+			<div class="like button">
+				<a href="#">
+					<img src="{% static "images/sign_facebook.png" %}" />
+					{% trans "Aimez notre page" %}
+				</a>
+			</div>
+
+			<div class="push">
+				<h1>{% trans "Prenez le contrôle <br />de votre équipe favorite" %}</h1>
+				<img src="{% static "images/visuelhome.png" %}" />
+			</div>
+
+		</div>
 	</div>
+
+	<div id="play">
+		<div class="wrapper">
+			<div class="match">
+				<div class="team mine">
+					{% thumbnail team.logo "60x60" format="PNG" crop="center" as im %}
+					<img class="mine" src="{{ im.url }}" />
+					{% endthumbnail %}
+				</div>
+				<span>vs.</span>
+				<div class="team">
+					{% thumbnail opposant.logo "40x40" format="PNG" crop="center" as im %}
+					<img src="{{ im.url }}" />
+					{% endthumbnail %}
+				</div>
+			</div>
+			<div class="text">
+				<h2>Composez vous-même</h2>
+				<h3>L'équipe de {{ team }} <br />pour son match contre {{ opposant }}</h3>
+			</div>
+			<div class="buttons">
+				<div class="button">
+					<a href="{% provider_login_url "facebook" method="oauth2" %}" />
+						<img src="{% static "images/sign_facebook.png" %}" alt="Facebook" />
+						<span class="bold">Connect</span> pour pronostiquer 
+					</a>
+				</div>
+				<div class="button clearblue">
+					<a href="{% url 'matchday' %}">Simple visite</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% if sponsors %}
+	<div id="sponsors">
+		<ul class="wrapper">
+			{% for sponsor in sponsors %}
+			<li>
+				<a href="{{ sponsor.url }}" target="_blank" />
+					{% thumbnail sponsor.logo "120x120" format="PNG" as im %}
+					<img class="mine" src="{{ im.url }}" />
+					{% endthumbnail %}
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
 
 {% endblock %}

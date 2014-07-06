@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,17 +13,35 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<link rel="stylesheet" href="{{ STATIC_URL }}stylesheets/screen.css">
+		<link rel="stylesheet" href="{% static "stylesheets/screen.css" %}">
 		{% block css %}{% endblock %}
-		<link rel="icon" type="image/png" href="{{ STATIC_URL }}images/favicon.png">
+		<link rel="icon" type="image/png" href="{% static "images/favicon.png" %}">
 		{% block metas %}{% endblock %}
 	</head>
-	<body class="page">
+	<body class="page" id="page-{% block pagename %}home{% endblock %}">
+		{% block header %}
+		{% endblock %}
 
 		{% block body %}{% endblock %}
+
+		{% block footer %}
+		<footer id="footer">
+			<div class="wrapper">
+				<p>
+					&copy; Copyright CoachMyTeam 2014 - contact@coachmyteam.com
+				</p>
+				<ul>
+					<li><a href="#">Règlement</a></li>
+					<li><a href="#">Mentions légales</a></li>
+					<li><a href="#">Crédits</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</footer>
+		{% endblock %}
 			
-		<script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/core.js"></script>
+		<script type="text/javascript" src="{% static "js/libs/jquery-1.10.2.min.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/core.js" %}"></script>
 		{% block javascript %}{% endblock %}
 
 		<!--[if lt IE 7]>
